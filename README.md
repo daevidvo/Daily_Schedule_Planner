@@ -1,6 +1,6 @@
 # Daily Schedule Planner
 
-## Technologies Used
+## Technologies Used 🖥️
 | Technology Used         | Resource URL           | 
 | ------------- |:-------------:| 
 | JavaScript | [https://developer.mozilla.org/en-US/docs/Web/JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)     |  
@@ -13,7 +13,7 @@
 
 ------------------
 
-## Description 
+## Description 📝
 
 [Click to View the Deployed Site](https://daevidvo.github.io/Daily_Schedule_Planner/)
 
@@ -27,7 +27,7 @@ Now, through the power of jQuery, Day.js, and JavaScript, we can plan out our da
 
 ----------------
 
-## Table of Contents
+## Table of Contents 📋
 
 * [Usage and Installation](#usage-and-installation)
 * [Learning Points](#learning-points)
@@ -36,7 +36,7 @@ Now, through the power of jQuery, Day.js, and JavaScript, we can plan out our da
 
 -------------
 
-## Usage and Installation
+## Usage and Installation 📥
 
 To use the planner, simply follow the steps below:
 
@@ -52,7 +52,7 @@ Once you have the contents on your local machine, open index.html in your browse
 
 ----------------
 
-## Learning Points
+## Learning Points ✍️
 
 There were many valuable lessons as a developer that allowed me to create this website. However, I believe the most important lessons was simply learning how to use jQuery and Day.js
 
@@ -70,7 +70,7 @@ Used mainly to figure out the current hour and to display the time in the planne
 
 -------------
 
-## Author Info
+## Author Info 👺
 
 ### **David Vo**
 
@@ -80,7 +80,7 @@ Used mainly to figure out the current hour and to display the time in the planne
 
 ---------------
 
-## License
+## License 🚩
 
 MIT License
 
