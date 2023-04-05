@@ -18,9 +18,9 @@ $(function () {
       } else { //if the two comparators aren't true, then it must be 9AM currently so it turns the 9AM section red
         $(this).addClass("present")
       }
-    } else if (this.id > `hour-${dayjs().format("H")}`) {//if the current iteration hour is in the future, then it will make the section green
+    } else if (this.id < `hour-${dayjs().format("H")}`) {//if the current iteration hour is in the future, then it will make the section green
       $(this).addClass("future")
-    } else if (this.id < `hour-${dayjs().format("H")}`){//if the current iteration hour is in the past, then it will make the section grey
+    } else if (this.id > `hour-${dayjs().format("H")}`){//if the current iteration hour is in the past, then it will make the section grey
       $(this).addClass("past")
     } else {
       $(this).addClass("present")//if the current iteration hour is equal to the current hour, then it will make the section red
