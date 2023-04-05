@@ -1,72 +1,37 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
-
+//the jQuery function below loads AFTER everything else on the index.html has finished loading
 $(function () {
 
-
-
-
-
-
-
-
-
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-
-
-  //localStorage.setItem(`${$(e.target).parent().siblings(".btn").id}`)
-  $(".planner").on("click", ".btn", function(e) {
-    if ($(e.target).parent()[0].classList[0] === "btn") {
-      localStorage.setItem(`${$(e.target).closest("div")[0].id}`, `${$(e.target).parent().siblings("textarea").val()}`)
+  $(".planner").on("click", ".btn", function(e) { //event listener placed on the planner div and delegated to the buttons
+    if ($(e.target).parent()[0].classList[0] === "btn") { //checks to see if the parent of the target is the button itself since users can click on the floppy disk icon and it wouldn't trigger properly
+      localStorage.setItem(`${$(e.target).closest("div")[0].id}`, `${$(e.target).parent().siblings("textarea").val()}`) //sets the localStorage key name to the hour-# depending on the button clicked along with the value of the text that was written in the box
     } else {
-      localStorage.setItem(`${$(e.target).parent()[0].id}`, `${$(e.target).siblings("textarea").val()}`)
+      localStorage.setItem(`${$(e.target).parent()[0].id}`, `${$(e.target).siblings("textarea").val()}`) //same functionality as line 6. refer to the comment on the same line.
     }
   })
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-
-
-  //
-  $(".planner").children("div").each(function(){
-    if (this.id.includes("9")) {
-      if (dayjs().format("H") > 9) {
+  $(".planner").children("div").each(function(){ //function to change the box color depending on whether it's the present, in the past, or in the future for each of the hour sections.
+    if (this.id.includes("9")) { //have to evaluate 9 by itself because if we used this.id > `hour-${dayjs().format("H")}` since 0123456789 is ordered in highest value to lowest for strings.
+      if (dayjs().format("H") > 9) { //if it is after 9AM, then it will make the 9AM section green
         $(this).addClass("past")
-      } else if (dayjs().format("H") < 9) {
+      } else if (dayjs().format("H") < 9) { //if it is before 9AM, then it will make the 9AM section green
         $(this).addClass("future")
-      } else {
+      } else { //if the two comparators aren't true, then it must be 9AM currently so it turns the 9AM section red
         $(this).addClass("present")
       }
-    } else if (this.id > `hour-${dayjs().format("H")}`) {
+    } else if (this.id > `hour-${dayjs().format("H")}`) {//if the current iteration hour is in the future, then it will make the section green
       $(this).addClass("future")
-    } else if (this.id < `hour-${dayjs().format("H")}`){
+    } else if (this.id < `hour-${dayjs().format("H")}`){//if the current iteration hour is in the past, then it will make the section grey
       $(this).addClass("past")
     } else {
-      $(this).addClass("present")
+      $(this).addClass("present")//if the current iteration hour is equal to the current hour, then it will make the section red
     }
   })
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-
-  $(".planner").find("textarea").each(function(){
+  $(".planner").find("textarea").each(function(){ //for each of the sections, it checks if there is a corresponding item in localStorage. If there isn't, then it doesn't do anything. If there is, then it retrieves that item and displays it to the user in the corresponding section.
   if (localStorage.getItem(`${$(this).parent()[0].id}`)) {
     $(this).val(localStorage.getItem(`${$(this).parent()[0].id}`))
   }
 })
-
-  // TODO: Add code to display the current date in the header of the page.
 
   $('#currentDay').text("The current time is " + dayjs().format('h:mmA MM/D/YYYY')) //displays the current time and day on the header portion
 });
