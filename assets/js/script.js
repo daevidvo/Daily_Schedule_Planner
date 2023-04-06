@@ -10,17 +10,9 @@ $(function () {
   })
 
   $(".planner").children("div").each(function(){ //function to change the box color depending on whether it's the present, in the past, or in the future for each of the hour sections.
-    if (this.id.includes("9")) { //have to evaluate 9 by itself because if we used this.id > `hour-${dayjs().format("H")}` since 0123456789 is ordered in highest value to lowest for strings.
-      if (dayjs().format("H") > 9) { //if it is after 9AM, then it will make the 9AM section green
-        $(this).addClass("past")
-      } else if (dayjs().format("H") < 9) { //if it is before 9AM, then it will make the 9AM section green
-        $(this).addClass("future")
-      } else { //if the two comparators aren't true, then it must be 9AM currently so it turns the 9AM section red
-        $(this).addClass("present")
-      }
-    } else if (this.id > `hour-${dayjs().format("H")}`) {//if the current iteration hour is in the future, then it will make the section green
+    if (Number(this.id) > dayjs().format("H")) {//if the current iteration hour is in the future, then it will make the section green
       $(this).addClass("future")
-    } else if (this.id < `hour-${dayjs().format("H")}`){//if the current iteration hour is in the past, then it will make the section grey
+    } else if (Number(this.id) < dayjs().format("H")){//if the current iteration hour is in the past, then it will make the section grey
       $(this).addClass("past")
     } else {
       $(this).addClass("present")//if the current iteration hour is equal to the current hour, then it will make the section red
@@ -33,5 +25,8 @@ $(function () {
   }
 })
 
-  $('#currentDay').text("The current time is " + dayjs().format('h:mmA MM/D/YYYY')) //displays the current time and day on the header portion
+
+ setInterval(function () {
+  $('#currentDay').text("The current time is " + dayjs().format('h:mm:ssA MM/D/YYYY')) //displays the current time and day on the header portion
+ }, 1000); 
 });
