@@ -25,5 +25,8 @@ $(function () {
   }
 })
 
-  $('#currentDay').text("The current time is " + dayjs().format('h:mmA MM/D/YYYY')) //displays the current time and day on the header portion
+
+ setInterval(function () {
+  $('#currentDay').text("The current time is " + dayjs().format('h:mm:ssA MM/D/YYYY')) //displays the current time and day on the header portion
+ }, 1000); 
 });
